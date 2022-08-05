@@ -7,7 +7,7 @@ Backend server of Odin Portfolio site
 * [MongoDB Database (Mongoose)](https://www.mongodb.com/)  
 
 ## About the project
-* this is a simple backend service for the following functions
+### this is a simple backend service for the following functions
   
 * 1. to serve up dynamic content for populating the frontend
 
