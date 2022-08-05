@@ -3,6 +3,10 @@ const Schema = mongoose.Schema;
 
 const aboutMeSchema = new Schema({
 
+  images: {
+    type: Array,
+    required: [true, "two images must be included"],
+  },
   firstName: {
     type: String,
     required: [true, "title must be included"],
