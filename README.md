@@ -5,7 +5,7 @@ Backend server of Odin Portfolio site
 * [Node Js](https://nodejs.org/en/)
 * [Express Js](https://expressjs.com/)
 * [MongoDB Database (Mongoose)](https://www.mongodb.com/)  
-
+* [Postman Documentation](https://documenter.getpostman.com/view/19482223/VUjLK72f/)
 ## About the project
 ### this is a simple backend service for the following functions
   
