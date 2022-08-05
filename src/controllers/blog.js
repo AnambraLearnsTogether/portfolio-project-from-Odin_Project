@@ -1,6 +1,8 @@
+const cloudinary = require('./../middlewares/cloudinary');
+const fs = require('fs');
+const Work = require("../models/blog");
 
-
-const postBlog = async (req,res){
+module.exports = async (req, res) => {
   try {
     const uploader = async (path) => await cloudinary.uploads(path, 'images');
     const urls = [];
@@ -18,17 +20,17 @@ const postBlog = async (req,res){
       headline,
       body
     } = req.body;
-    const blog = new Blog({
+    const work = new Work({
       title,
       headline,
       body,
       images: urls
     });
-    const newBlog = await blog.save();
+    const newWork = await work.save();
 
     res.status(200).json({
       message: "images uploaded successfully",
-      data: newBlog
+      data: newWork
     });
   } catch (err) {
     console.log(err);
@@ -36,5 +38,4 @@ const postBlog = async (req,res){
       msg: err.message
     });
   }
-}
 };

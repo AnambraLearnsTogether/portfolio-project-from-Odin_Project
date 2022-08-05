@@ -1,26 +1,31 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const blogSchema = new Schema({
+const workSchema = new Schema({
+  image: {
+    type: Array,
+    required: false,
+  },
   title: {
     type: String,
-    required: true,
+    required: [true, "title must be included"],
   },
   headline: {
     type: String,
     required: true,
+    max: [60, "Headline must be less than 60 characters"],
   },
-  body: {
+  githubUrl: {
     type: String,
-    required: true,
-  },
-  images: {
-    type: Array,
     required: false,
+  },
+  liveLink:{
+    type: String,
+    required: false
   }
 },{
   timestamps: true,
 });
 
-const Blog = mongoose.model("Blog", blogSchema);
-module.exports = Blog;
+const Work = mongoose.model("Work", workSchema);
+module.exports = Work;
