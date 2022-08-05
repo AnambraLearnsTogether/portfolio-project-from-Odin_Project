@@ -6,23 +6,40 @@ Backend server of Odin Portfolio site
 * [Express Js](https://expressjs.com/)
 * [MongoDB Database (Mongoose)](https://www.mongodb.com/)  
 
+## About the project
+* this is a simple backend service for the following functions
+  
+* 1. to serve up dynamic content for populating the frontend
+
+* 2. to create edit and delete content from the Odin Portfolio site
+
+*`please feel free to add more functionalities to this code base`*
+
 ## Code Base Folder Structure  
 
+**``/src``** :- contains all the application codes
+
+**``/config``** :- contains Data base configuration settings
+
 **``/controllers``** :- contains all files that handles request and interaction with the database
+
+**``/middlewares``** :- contains all the middleware functions
 
 **``/db``** :- contains database connection code snippet
 
 **``/models``** :- contains database model schemas
 
-**``/routes``** :- guides the server requests to the appropriate handler function
+**``/routes``** :- guides the server requests to the appropriate controller functions
 
 **``/services``** :- added services to the codebase
 
-**``/utilities``** :- contains helper functions
+**``/validation``** :- contains all the validation codes
 
 **``app.js``** :- contains express app setups and routing logics
 
 **``server.js``** :- connects the database and starts the server
+
+**``.env``** :- contains the secure environmental variables used in the application
 
 ## How to Contribute  
 ### Prerequisites  
