@@ -1,6 +1,6 @@
-const cloudinary = require('./../middlewares/cloudinary');
+const cloudinary = require('../middlewares/cloudinary');
 const fs = require('fs');
-const Work = require("../models/blog");
+const Work = require("../models/projects");
 
 module.exports = async (req, res) => {
   try {
@@ -18,14 +18,17 @@ module.exports = async (req, res) => {
     const {
       title,
       headline,
-      body
+      githubUrl,
+      liveLink,
     } = req.body;
     const work = new Work({
       title,
       headline,
-      body,
-      images: urls
+      githubUrl,
+      liveLink,
+      image: urls,
     });
+    // console.log(work);
     const newWork = await work.save();
 
     res.status(200).json({

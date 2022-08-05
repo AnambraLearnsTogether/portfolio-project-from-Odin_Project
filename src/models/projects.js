@@ -8,12 +8,12 @@ const workSchema = new Schema({
   },
   title: {
     type: String,
-    required: [true, "title must be included"],
+    required: [true, "title is required"]
   },
   headline: {
     type: String,
     required: true,
-    max: [60, "Headline must be less than 60 characters"],
+    max: [100, "Headline must be less than 60 characters"],
   },
   githubUrl: {
     type: String,

@@ -2,10 +2,11 @@ const express = require("express");
 const router = express.Router();
 
 const upload = require('../middlewares/multer.middleware');
-const postBlog = require("../controllers/blog");
+const postBlog = require("../controllers/projects");
+const aboutMe = require("../controllers/aboutme");
 
 // blog routes
-router.route('/blog')
+router.route('/work')
   .get()
   .post(upload.array('image',1), postBlog)
   .put()
@@ -14,7 +15,7 @@ router.route('/blog')
 // user routes
 router.route('/user')
   .get()
-  .post()
+  .post(upload.array('image',2), aboutMe)
   .put()
   .delete();
 
