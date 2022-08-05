@@ -8,7 +8,7 @@ Backend server of Odin Portfolio site
 
 ## Code Base Folder Structure  
 
-**``/controllers** :- contains all files that handles request and interaction with the database
+**``/controllers``** :- contains all files that handles request and interaction with the database
 
 **``/db``** :- contains database connection code snippet
 
