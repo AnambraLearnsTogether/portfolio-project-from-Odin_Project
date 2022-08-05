@@ -8,21 +8,21 @@ Backend server of Odin Portfolio site
 
 ## Code Base Folder Structure  
 
-**/controllers** :- contains all files that handles request and interaction with the database
+**``/controllers** :- contains all files that handles request and interaction with the database
 
-**/db** :- contains database connection code snippet
+**``/db``** :- contains database connection code snippet
 
-**/models** :- contains database model schemas
+**``/models``** :- contains database model schemas
 
-**/routes** :- guides the server requests to the appropriate handler function
+**``/routes``** :- guides the server requests to the appropriate handler function
 
-**/services** :- added services to the codebase
+**``/services``** :- added services to the codebase
 
-**/utilities** :- contains helper functions
+**``/utilities``** :- contains helper functions
 
-**app.js** :- contains express app setups and routing logics
+**``app.js``** :- contains express app setups and routing logics
 
-**server.js** :- connects the database and starts the server
+**``server.js``** :- connects the database and starts the server
 
 ## How to Contribute  
 ### Prerequisites  
