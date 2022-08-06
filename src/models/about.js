@@ -27,7 +27,7 @@ const aboutMeSchema = new Schema({
     type: String,
     required: [true, "address must be included"],
   },
-  aboutMe: {
+  about_Me: {
     type: String,
     required: false,
   },
