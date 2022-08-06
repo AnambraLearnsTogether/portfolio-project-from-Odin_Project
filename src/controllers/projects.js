@@ -82,6 +82,11 @@ module.exports.deleteWorkById = async (req, res) => {
       id
     } = req.params;
     const work = await Work.findByIdAndDelete(id);
+    if (!work) {
+      return res.status(404).json({
+        msg: "work not found"
+      });
+    }
     res.status(200).json({
       message: "work deleted successfully",
       data: work
@@ -105,7 +110,7 @@ module.exports.updateWorkById = async (req, res) => {
       githubUrl,
       liveLink,
     } = req.body;
-    const work = await Work.findByIdAndUpdate(id, {
+    await Work.findByIdAndUpdate(id, {
       title,
       headline,
       githubUrl,
@@ -113,7 +118,6 @@ module.exports.updateWorkById = async (req, res) => {
     });
     res.status(200).json({
       message: "work updated successfully",
-      data: work
     });
   } catch (err) {
     console.log(err);

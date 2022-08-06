@@ -32,7 +32,6 @@ router.route('/work/:id')
 router.route('/user')
   .post(upload.array('image', 1), postAbout);
 
-
 router.route('/user/:id')
   .get(getAbout)
   .put(upload.array('image', 2), updateAbout)
