@@ -25,16 +25,16 @@ router.route('/work')
 // single project 
 router.route('/work/:id')
   .get(getWorkById)
-  .put(upload.array('image', 1), updateWorkById)
+  .put(updateWorkById)
   .delete(deleteWorkById);
 
 // user routes
 router.route('/user')
-  .post(upload.array('image', 1), postAbout);
+  .post(upload.array('image', 2), postAbout);
 
 router.route('/user/:id')
   .get(getAbout)
-  .put(upload.array('image', 2), updateAbout)
+  .put(updateAbout)
   .delete(deleteAbout);
 
 module.exports = router;

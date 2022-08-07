@@ -7,8 +7,8 @@ const fs = require('fs');
 
 module.exports.postAbout = async (req, res) => {
   try {
-    const uploader = async (path) => await cloudinary.uploads(path, 'images');
     const urls = [];
+    const uploader = async (path) => await cloudinary.uploads(path, 'Users');
     const files = req.files;
     for (const file of files) {
       const {
@@ -18,6 +18,7 @@ module.exports.postAbout = async (req, res) => {
       urls.push(newPath);
       fs.unlinkSync(path);
     }
+    console.log(urls);
     const {
       firstName,
       lastName,
@@ -29,7 +30,8 @@ module.exports.postAbout = async (req, res) => {
       linkedInLink,
       twitterLink
     } = req.body;
-    const aboutMe = new AboutMe({
+    const myaboutMe = new AboutMe({
+      images: urls,
       firstName,
       lastName,
       phoneNumber,
@@ -39,11 +41,8 @@ module.exports.postAbout = async (req, res) => {
       gitHubLink,
       linkedInLink,
       twitterLink,
-      image: urls,
     });
-    // console.log(work);
-    const newaboutMe = await aboutMe.save();
-
+    const newaboutMe = await myaboutMe.save();
     res.status(200).json({
       message: "images uploaded successfully",
       data: newaboutMe
@@ -59,10 +58,13 @@ module.exports.postAbout = async (req, res) => {
 
 module.exports.getAbout = async (req, res) => {
   try {
-    const about_Me = await AboutMe.find();
+    const {
+      id
+    } = req.params;
+    const aboutMe = await AboutMe.findById(id);
     res.status(200).json({
       message: "about_me fetched successfully",
-      data: about_Me
+      data: aboutMe
     });
   } catch (err) {
     console.log(err);
@@ -75,9 +77,11 @@ module.exports.getAbout = async (req, res) => {
 
 module.exports.updateAbout = async (req, res) => {
   try {
-    const { 
+    const {
       id
     } = req.params;
+    const aboutMe = await AboutMe.findById(id);
+    console.log("aboutMe", aboutMe);
     const {
       firstName,
       lastName,
@@ -89,23 +93,28 @@ module.exports.updateAbout = async (req, res) => {
       linkedInLink,
       twitterLink
     } = req.body;
-    const aboutMe = await AboutMe.findByIdAndUpdate(id, {
-      firstName,
-      lastName,
-      phoneNumber,
-      email,
-      address,
-      about_Me,
-      gitHubLink,
-      linkedInLink,
-      twitterLink,
-    });
+    if (!aboutMe) {
+      return res.status(404).json({
+        status: "error",
+        msg: "about_me not found"
+      });
+    }
+    if (firstName) aboutMe.firstName = firstName;
+    if (lastName) aboutMe.lastName = lastName;
+    if (phoneNumber) aboutMe.phoneNumber = phoneNumber;
+    if (email) aboutMe.email = email;
+    if (address) aboutMe.address = address;
+    if (about_Me) aboutMe.about_Me = about_Me;
+    if (gitHubLink) aboutMe.gitHubLink = gitHubLink;
+    if (linkedInLink) aboutMe.linkedInLink = linkedInLink;
+    if (twitterLink) aboutMe.twitterLink = twitterLink;
+    const updatedaboutMe = await aboutMe.save();
     res.status(200).json({
       message: "about_me updated successfully",
-      data: aboutMe
+      data: updatedaboutMe
     });
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     return res.status(500).json({
       status: "error",
       msg: err.message
@@ -120,6 +129,11 @@ module.exports.deleteAbout = async (req, res) => {
       id
     } = req.params;
     const aboutMe = await AboutMe.findByIdAndDelete(id);
+    if (!aboutMe) {
+      return res.status(404).json({
+        msg: "about_me not found"
+      });
+    }
     res.status(200).json({
       message: "about_me deleted successfully",
       data: aboutMe
